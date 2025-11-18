@@ -17,6 +17,7 @@ from __future__ import annotations
 
 import argparse
 import math
+import sys
 from pathlib import Path
 from typing import Iterable, List, Sequence, Tuple
 
@@ -210,6 +211,18 @@ def build_parser() -> argparse.ArgumentParser:
 
 def main(argv: Sequence[str] | None = None) -> None:
     parser = build_parser()
+    argv = list(sys.argv[1:] if argv is None else argv)
+
+    if not argv:
+        parser.print_help()
+        parser.exit(
+            status=1,
+            message=(
+                "\nERROR: Please provide the path to the source sock image. Example:\n"
+                "  python -m src.bundle_image_creator path/to/sock.jpg --output-dir output\n"
+            ),
+        )
+
     args = parser.parse_args(argv)
 
     counts = parse_counts(args.counts)

@@ -25,6 +25,8 @@ pip install -r requirements.txt
 python -m src.bundle_image_creator path/to/sock.jpg --output-dir output
 ```
 
+Running the script without arguments shows the help text and an example command.
+
 ### Optional arguments
 - `--counts`: Space-separated list of bundle sizes to generate. Defaults to the
   preset counts above.
